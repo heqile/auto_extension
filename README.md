@@ -1,4 +1,4 @@
-# auto_extension
+# auto_login_extension
 
 1. Selon le domaine, propose une liste déroulante sur le formulaire, avec login
     - [x] Détecte domaine
