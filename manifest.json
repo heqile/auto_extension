@@ -1,0 +1,23 @@
+{
+    "name": "auto_login_extension",
+    "version": "1.0",
+    "description": "This extension is used to list logins for target site",
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "web_accessible_resources": [
+        "config/data.json",
+        "html/list.html"
+    ],
+    "browser_action": {
+    },
+    "manifest_version": 2
+}
