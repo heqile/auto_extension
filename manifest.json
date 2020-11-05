@@ -6,6 +6,7 @@
         "scripts": ["js/background.js"],
         "persistent": false
     },
+    "options_page": "html/options.html",
     "permissions": [
         "activeTab",
         "tabs",
