@@ -1,4 +1,9 @@
 
+function init() {
+    refreshConfigFromFile();
+    loadTemplateFromFile();
+}
+
 function refreshConfigFromFile() {
     fetch(chrome.runtime.getURL("config/data.json"))
     .then(response => response.json())
@@ -9,12 +14,22 @@ function refreshConfigFromFile() {
     });
 };
 
+function loadTemplateFromFile() {
+    fetch(chrome.runtime.getURL("html/list.html"))
+    .then(response => response.text())
+    .then(data => {
+        chrome.storage.local.set({"template": data}, function() {
+            console.log("save template");
+        });
+    });
+}
+
 
 function checkUrl(tabId, changeInfo, tab) {
     // trick to get url's domain
     var url = document.createElement ('a');
     url.href = tab.url;
-
+    
     if (changeInfo.status === "complete") {
         chrome.storage.local.get("data", function(login_data) {
             for (const domain in login_data.data) {
@@ -30,11 +45,13 @@ function checkUrl(tabId, changeInfo, tab) {
                         file: 'lib/js/bootstrap.bundle.min.js'
                     });
                     // nested executeScript to pass config to content script
-                    chrome.tabs.executeScript(tabId, {
-                        code: "var config = " + JSON.stringify(login_data.data[domain])
-                    }, function() {
+                    chrome.storage.local.get("template", function(data) {
                         chrome.tabs.executeScript(tabId, {
-                            file: 'js/content.js'
+                            code: `var config = ${JSON.stringify(login_data.data[domain])}; var template = '${data.template}'`
+                        }, function() {
+                            chrome.tabs.executeScript(tabId, {
+                                file: 'js/content.js'
+                            });
                         });
                     });
                 }
@@ -46,10 +63,10 @@ function checkUrl(tabId, changeInfo, tab) {
 chrome.tabs.onUpdated.addListener(checkUrl);
 
 // init when window loaded
-chrome.windows.onCreated.addListener(refreshConfigFromFile);
+chrome.windows.onCreated.addListener(init);
 
 // init when click on icon
-chrome.browserAction.onClicked.addListener(refreshConfigFromFile);
+chrome.browserAction.onClicked.addListener(init);
 
 // init when extension installed
-chrome.runtime.onInstalled.addListener(refreshConfigFromFile);
+chrome.runtime.onInstalled.addListener(init);
