@@ -2,6 +2,11 @@
     "name": "auto_login_extension",
     "version": "1.0",
     "description": "This extension is used to list logins for target site",
+    "icons": {
+        "16": "icon/icon16.png",
+        "48": "icon/icon48.png",
+       "128": "icon/icon128.png"
+    },
     "background": {
         "scripts": ["js/background.js"],
         "persistent": false
