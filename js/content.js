@@ -10,16 +10,12 @@ function addListItem(listElement, config) {
     }
 };
 
-// inject list to form
-if (document.getElementById("extension-login-list") === null) {
+let loginInput = document.getElementById("_userid");
+if (loginInput !== null && document.getElementById("extension-login-list") === null) {
     // add list template
-    fetch(chrome.runtime.getURL("html/list.html"))
-        .then(response => response.text())
-        .then(data => {
-            var element = document.createElement('login_list');
-            element.innerHTML = data;
-            addListItem(element, config);
-            document.getElementById("_userid").insertAdjacentElement("afterend", element);
-        });
+    var element = document.createElement('login_list');
+    element.innerHTML = template;
+    addListItem(element, config);
+    // inject list to form
+    loginInput.insertAdjacentElement("afterend", element);
 }
-
