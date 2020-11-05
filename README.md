@@ -7,3 +7,5 @@
     - [x] Clique sur item, auto compléter le formulaire
 2. La page d'option
     - [x] Visualiser les ids/domaines
+3. icon
+    - [ ] Afficher menu quand clique le icon (refresh, options...)
