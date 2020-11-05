@@ -5,10 +5,7 @@ function init() {
 };
 
 function loadConfigFromFile() {
-    // the config should refresh each restart of chrome or by user action
-    const url = chrome.runtime.getURL("config/data.json");
-
-    fetch(url)
+    fetch(chrome.runtime.getURL("config/data.json"))
     .then(response => response.json())
     .then(data => {
         login_data = data;
@@ -24,7 +21,6 @@ function checkUrl(tabId, changeInfo, tab) {
         for (const domain in login_data) {
             if (url.hostname === domain) {
                 // inject code
-                // nested executeScript to pass config to content script
                 chrome.tabs.insertCSS(tabId, {
                     file: 'lib/css/bootstrap.min.css'
                 });
@@ -34,6 +30,7 @@ function checkUrl(tabId, changeInfo, tab) {
                 chrome.tabs.executeScript(tabId, {
                     file: 'lib/js/bootstrap.bundle.min.js'
                 });
+                // nested executeScript to pass config to content script
                 chrome.tabs.executeScript(tabId, {
                     code: "var config = " + JSON.stringify(login_data[domain])
                 }, function() {
@@ -48,7 +45,11 @@ function checkUrl(tabId, changeInfo, tab) {
 
 chrome.tabs.onUpdated.addListener(checkUrl);
 
+// init when window loaded
 chrome.windows.onCreated.addListener(init);
 
-// click icon
+// init when click on icon
 chrome.browserAction.onClicked.addListener(init);
+
+// init when extension installed
+chrome.runtime.onInstalled.addListener(init);
