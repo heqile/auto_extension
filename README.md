@@ -6,4 +6,4 @@
     - [x] Affiche la liste déroulante, avec les données stocké ~~en local~~ dand un fichier
     - [x] Clique sur item, auto compléter le formulaire
 2. La page d'option
-    - [ ] Visualiser/ajouter les ids/domaines
+    - [x] Visualiser les ids/domaines
