@@ -19,7 +19,10 @@ if (document.getElementById("extension-login-list") === null) {
             var element = document.createElement('login_list');
             element.innerHTML = data;
             addListItem(element, config);
-            document.getElementById("_userid").insertAdjacentElement("afterend", element);
+            let loginInput = document.getElementById("_userid");
+            if (loginInput !== null) {
+                loginInput.insertAdjacentElement("afterend", element);
+            }
         });
 }
 
