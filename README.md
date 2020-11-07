@@ -5,6 +5,7 @@
     - [x] Détecte login formulaire
     - [x] Affiche la liste déroulante, avec les données stocké ~~en local~~ dand un fichier
     - [x] Clique sur item, auto compléter le formulaire
+    - [ ] regex domain checking (with *)
 2. La page d'option
     - [x] Visualiser les ids/domaines
     - [ ] fix: expand item does not work well... it refresh page automaticlly
@@ -12,4 +13,4 @@
 3. icon
     - [ ] Afficher menu quand clique le icon (refresh, options...)
 4. divers
-    - [ ] Check version
+    - [ ] Check version, Notify updated, reload config (save version in local storage ?)
