@@ -8,5 +8,8 @@
 2. La page d'option
     - [x] Visualiser les ids/domaines
     - [ ] fix: expand item does not work well... it refresh page automaticlly
+    - [ ] set config file path
 3. icon
     - [ ] Afficher menu quand clique le icon (refresh, options...)
+4. divers
+    - [ ] Check version
