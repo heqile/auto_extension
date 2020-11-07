@@ -8,9 +8,9 @@
     - [ ] regex domain checking (with *)
 2. La page d'option
     - [x] Visualiser les ids/domaines
-    - [ ] fix: expand item does not work well... it refresh page automaticlly
+    - [x] fix: expand item does not work well... it refresh page automaticlly
     - [ ] set config file path
 3. icon
-    - [x] Afficher menu quand clique le icon (refresh, options...) - par enlever le "href" attribut
+    - [ ] Afficher menu quand clique le icon (refresh, options...) - par enlever le "href" attribut
 4. divers
     - [ ] Check version, Notify updated, reload config (save version in local storage ?)
