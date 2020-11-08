@@ -29,7 +29,7 @@ function checkUrl(tabId, changeInfo, tab) {
     // trick to get url's domain
     var url = document.createElement ('a');
     url.href = tab.url;
-    
+
     if (changeInfo.status === "complete") {
         chrome.storage.local.get("data", function(login_data) {
             for (const domain in login_data.data) {
@@ -70,3 +70,13 @@ chrome.browserAction.onClicked.addListener(init);
 
 // init when extension installed
 chrome.runtime.onInstalled.addListener(init);
+
+// refresh config when asked from extension (popup or options page)
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (!sender.tab && request.action === "refresh") {
+            refreshConfigFromFile();
+            sendResponse("config refreshed");
+        }
+    }
+);
